@@ -27,6 +27,7 @@ class Game:
             await message.channel.send(
                 "{0.author}´s game just started!".format(message))
             ###Crear dm grupal o canal 
+            ###Crear dm grupal o canal 
         else:
             await message.channel.send("<@{0.author.id}> just joined! {1} to go!".format(
                 message, str(self.MaxPlayers-self.CurrentPlayers)))
