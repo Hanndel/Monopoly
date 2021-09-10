@@ -27,7 +27,6 @@ async def Interactuate(message,idPlayer):
     if(len(gamesList)>0):
         game = gamesList[0]
         ##comprobar accion aqui o pasar id accion y comprobar cual es en Game.py
-        ##comprobar accion aqui o pasar id accion y comprobar cual es en Game.py
         game.ComprarPropiedad(idPlayer)
     else:
         await message.channel.send("You are not in a game currently")
