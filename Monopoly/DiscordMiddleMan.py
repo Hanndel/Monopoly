@@ -19,6 +19,7 @@ async def on_message(message):
         ###Arreglar confirmar int
         ###Commits
         ###Commits
+        ###Commits
     if message.content.startswith("!Join"):
         await CG.Join(message, message.author.id)
     if message.content.startswith("!Interactuate"):
