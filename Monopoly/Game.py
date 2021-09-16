@@ -1,5 +1,5 @@
 from DiscordMiddleMan import client
-from Game import Game
+from CreateGame import games
         
 async def Interactuate(message,idPlayer):
     gamesList = [x for x in games.values() if idPlayer in x.playersId]
@@ -9,3 +9,8 @@ async def Interactuate(message,idPlayer):
         game.ComprarPropiedad(idPlayer)
     else:
         await message.channel.send("You are not in a game currently")
+
+def ComprarPropiedad(self,idPlayer):
+    self.propertiesPlayers[idPlayer]+=1
+    print(self.propertiesPlayers)
+    return
