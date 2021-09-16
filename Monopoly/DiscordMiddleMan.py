@@ -10,7 +10,7 @@ debug = True
 @client.event
 async def on_ready():
     print('We have logged in as {0.user}'.format(client))
-    print(client.guilds)
+    _VarForMember = await client.fetch_user(509718122488659979)
     await CreateGame.Create(371776838491701258, 2, "message", True) ### Mensaje de test
     time.sleep(2)
     await CreateGame.Join("<@!371776838491701258", 509718122488659979, True) ### Mensaje de test
