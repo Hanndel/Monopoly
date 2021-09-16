@@ -34,7 +34,7 @@ class CreateGame:
             idGame = int(re.search("([0-9])\w+",_regexForId)[0])
             if idGame in games:
                 game = games[idGame]
-                await game.Joining(message,idPlayer, debug)
+                await game.Joining(message,idPlayer, idGame, debug)
             else:
                 if debug: return
                 await message.channel.send("That person is not making a game right now")
@@ -42,7 +42,7 @@ class CreateGame:
             if debug: return
             await message.channel.send("{}, you are in a game already")
 
-    async def Joining(self, message,idPlayer, debug):
+    async def Joining(self, message,idPlayer, idGame, debug):
         self.playersId.append(idPlayer)
         self.propertiesPlayers[idPlayer] = 0
         self.CurrentPlayers += 1
@@ -50,8 +50,17 @@ class CreateGame:
             if debug: return 
             await message.channel.send(
                 "{0.author}´s game is full already".format(message))
+
         else:
             print("{0}'s game has started".format(self.owner))
+            await client.guilds[0].create_text_channel(idGame)
+            for k in self.playersId:
+                print(k)
+
+            for k in client.get_all_channels():
+                if k.name == "371776838491701258":
+                    await k.delete()
+
             if debug: return 
             await message.channel.send("<@{0.author.id}> just joined! {1} to go!".format(
                 message, str(self.MaxPlayers-self.CurrentPlayers)))
