@@ -28,6 +28,18 @@ async def on_message(message):
         # Mensaje normal
         await CreateGame.Join(message.content, message.author.id, message.guild, message.channel, True)
 
+@client.event
+async def on_guild(guild):
+    print("a")
+
+@client.event
+async def on_member_join(member):
+    print("a")
+
+@client.event
+async def on_guild_join(guild):
+    print("a")  
+    
 
 route = os.getcwdb()
 token = open(route+b"/Monopoly/token.txt", "r")

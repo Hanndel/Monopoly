@@ -1,4 +1,5 @@
-from DiscordMiddleMan import client
+from discord.abc import _Overwrites
+from DiscordMiddleMan import client, discord
 import re
 
 games = {}
@@ -16,7 +17,6 @@ class CreateGame:
         self.propertiesPlayers[owner] = 0
 
     async def Create(idPlayer, players, channel, debug):
-        print((len([x for x in games.values() if idPlayer in x.playersId]) == 0))
         if(len([x for x in games.values() if idPlayer in x.playersId]) == 0):
             games[idPlayer] = (CreateGame(players=int(
                 players), owner=idPlayer, channel=channel, debug=debug))
@@ -59,11 +59,12 @@ class CreateGame:
                 "{0.display_name}´s game is full already".format(client.fetch_user(idPlayer)))
         else:
             if len(self.playersId) == self.MaxPlayers:
-                # await message.channel.send("{0.author}´s game is full and starting".format(
-                # message, str(self.MaxPlayers-self.CurrentPlayers)))
                 # Crear canal y asignar permisos para verlo/interactuar con el
                 print("{0}'s game has started".format(self.owner))
-                _VarForChannel = await guild.create_text_channel(idGame)
+                overwrites = {
+                            guild.default_role: discord.PermissionOverwrite(read_messages=False)
+                }
+                _VarForChannel = await guild.create_text_channel(idGame, overwrites = overwrites)
                 for k in self.playersId:
                     _VarForMember = await guild.fetch_member(k)
                     await _VarForChannel.set_permissions(_VarForMember, read_messages=True, send_messages=True, view_channel=True)
