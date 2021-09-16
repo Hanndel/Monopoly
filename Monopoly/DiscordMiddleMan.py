@@ -1,29 +1,32 @@
-import discord
-import os
 import time
-
+import os
+import discord
 client = discord.Client()
-from CreateGame import *
+from CreateGame import * #Al formatear se jode, hay que ponerlo debajo del cliente si o si
 
 debug = True
+
 
 @client.event
 async def on_ready():
     print('We have logged in as {0.user}'.format(client))
-    _VarForMember = await client.fetch_user(509718122488659979)
-    await CreateGame.Create(371776838491701258, 2, "message", True) ### Mensaje de test
+    _VarForGuild = client.guilds[0]  # Solo para tests
+    await CreateGame.Create(509718122488659979, 2, 0, debug)  # Mensaje de test
     time.sleep(2)
-    await CreateGame.Join("<@!371776838491701258", 509718122488659979, True) ### Mensaje de test
+    await CreateGame.Join("<@!371776838491701258", 509718122488659979, _VarForGuild, 0, True)
+
 
 @client.event
 async def on_message(message):
     if message.content.startswith("!Create"):
-        await CreateGame.Create(message.author.id, message.content.split()[1], message, debug) ###Mensaje normal
-        ###ToDo
-        ###Arreglar create null
-        ###Arreglar confirmar int
+        # Mensaje normal
+        await CreateGame.Create(message.author.id, message.content.split()[1], message.channel, debug)
+        # ToDo
+        # Arreglar create null
+        # Arreglar confirmar int
     if message.content.startswith("!Join"):
-        await CreateGame.Join(message, message.author.id, debug) ###Mensaje normal
+        # Mensaje normal
+        await CreateGame.Join(message.content, message.author.id, message.guild, message.channel, True)
 
 
 route = os.getcwdb()
