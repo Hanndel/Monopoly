@@ -16,6 +16,7 @@ class CreateGame:
         self.propertiesPlayers[owner] = 0
 
     async def Create(idPlayer, players, channel, debug):
+        print((len([x for x in games.values() if idPlayer in x.playersId]) == 0))
         if(len([x for x in games.values() if idPlayer in x.playersId]) == 0):
             games[idPlayer] = (CreateGame(players=int(
                 players), owner=idPlayer, channel=channel, debug=debug))

@@ -13,7 +13,7 @@ async def on_ready():
     _VarForGuild = client.guilds[0]  # Solo para tests
     await CreateGame.Create(509718122488659979, 2, 0, debug)  # Mensaje de test
     time.sleep(2)
-    await CreateGame.Join("<@!371776838491701258", 509718122488659979, _VarForGuild, 0, True)
+    await CreateGame.Join("<@!509718122488659979", 371776838491701258, _VarForGuild, 0, True)
 
 
 @client.event
