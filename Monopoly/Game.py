@@ -1,6 +1,6 @@
 from DiscordMiddleMan import client
 
-Data = []
+Data = {}
         
 
 class Game():
@@ -12,8 +12,6 @@ class Game():
         self.channelid = channelid
 
     def AddPlayersToChannel(self):
-        print("a")
-        Data.append(self.channelid) #Fixear 
         Data[self.channelid] = []
         for k in self.Players:
             Data[self.channelid].append(k)
