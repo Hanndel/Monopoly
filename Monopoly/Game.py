@@ -1,6 +1,42 @@
 from DiscordMiddleMan import client
-from CreateGame import games
+
+Data = []
         
+
+class Game():
+    def __init__(self, players, channelid):
+        self.Gameid = 0
+        self.Board = []
+        self.Players = players
+        self.Maxplayers = len(players)
+        self.channelid = channelid
+
+    def AddPlayersToChannel(self):
+        print("a")
+        Data.append(self.channelid) #Fixear 
+        Data[self.channelid] = []
+        for k in self.Players:
+            Data[self.channelid].append(k)
+        return
+
+
+    
+
+    
+
+class Player(Game):
+    def __init__(self,players,channelid):
+        super().__init__(players,channelid)
+        self.Playerid = 0
+
+
+
+
+
+
+
+games = 0
+
 async def Interactuate(message,idPlayer):
     gamesList = [x for x in games.values() if idPlayer in x.playersId]
     if(len(gamesList)>0):

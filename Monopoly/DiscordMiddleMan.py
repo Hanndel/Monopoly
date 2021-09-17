@@ -11,6 +11,9 @@ debug = True
 async def on_ready():
     print('We have logged in as {0.user}'.format(client))
     _VarForGuild = client.guilds[0]  # Solo para tests
+    for k in client.get_all_channels():
+        if k.name in ["509718122488659979", "371776838491701258"]:
+            await k.delete()
     await CreateGame.Create(509718122488659979, 2, 0, debug)  # Mensaje de test
     time.sleep(2)
     await CreateGame.Join("<@!509718122488659979", 371776838491701258, _VarForGuild, 0, True)
@@ -27,6 +30,10 @@ async def on_message(message):
     if message.content.startswith("!Join"):
         # Mensaje normal
         await CreateGame.Join(message.content, message.author.id, message.guild, message.channel, True)
+
+    if message.content.startswith("!Roll"):
+        
+        return
 
 @client.event
 async def on_guild(guild):
