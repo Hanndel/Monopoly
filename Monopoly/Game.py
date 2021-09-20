@@ -1,31 +1,68 @@
 from DiscordMiddleMan import client
 
 Data = {}
-        
+
+GameBoard = {
+    "0": {
+        "owner": "Bank",
+        "Cost": 5000,
+        "HouseCost": 6000,
+        "Houses": 0,
+        "Hotel": False,
+        "Fee": 3000,
+    }
+}
+
+Recipes = {
+    "CopperWire": {
+        "Requires": {
+            "CopperBar": 1
+        }
+    },
+    "Circuit": {
+        "Requires":{
+            "CopperWire": 5,
+            "IronBar": 2,
+            "SiliconBar": 2
+        }
+    }
+}
 
 class Game():
     def __init__(self, players, channelid):
         self.Gameid = 0
-        self.Board = []
         self.Players = players
-        self.Maxplayers = len(players)
         self.channelid = channelid
+        self.AddChannel()
 
-    def AddPlayersToChannel(self):
-        Data[self.channelid] = []
-        for k in self.Players:
-            Data[self.channelid].append(k)
-        return
-
-
-    
+    def AddChannel(self):
+        Data[self.channelid] = {}
+        Data[self.channelid][self.channelid] = Board(self.channelid)
+        for player in self.Players:
+            Data[self.channelid][player] = Player(player, self.channelid)
 
     
+        
 
-class Player(Game):
-    def __init__(self,players,channelid):
-        super().__init__(players,channelid)
-        self.Playerid = 0
+
+
+class Player():
+    def __init__(self, playerid, channelid):
+        self.playerid = playerid
+        self.channelid = channelid
+        pass
+
+    def Roll(self):
+        print("RolledHEHE")
+
+
+class Board():
+    def __init__(self, channelid):
+        pass
+
+
+
+        
 
 
 

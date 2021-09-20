@@ -1,6 +1,6 @@
 from discord.abc import _Overwrites
 from DiscordMiddleMan import client, discord
-from Game import Game
+from Game import Game, Data
 import re
 
 games = {}
@@ -64,7 +64,9 @@ class CreateGame:
                     _VarForMember = await guild.fetch_member(k)
                     await _VarForChannel.set_permissions(_VarForMember, read_messages=True, send_messages=True, view_channel=True)
 
-                Game(self.playersId, _VarForChannel.id).AddPlayersToChannel()
+                Game(self.playersId, _VarForChannel.id)
+                Data[_VarForChannel.id][371776838491701258].Roll()
+
                 await _VarForChannel.send("<@&864644094343905291>, game is about to start")
             else:
                 await channel.send("<@{0.id}> just joined! {1} to go!".format(

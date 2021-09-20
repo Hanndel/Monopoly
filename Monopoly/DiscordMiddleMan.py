@@ -3,6 +3,7 @@ import os
 import discord
 client = discord.Client()
 from CreateGame import * #Al formatear se jode, hay que ponerlo debajo del cliente si o si
+from Game import Data
 
 debug = True
 
@@ -33,7 +34,6 @@ async def on_message(message):
         await CreateGame.Join(message.content, message.author.id, message.guild, message.channel, True)
 
     if message.content.startswith("!Roll"):
-        
         return
 
 @client.event
