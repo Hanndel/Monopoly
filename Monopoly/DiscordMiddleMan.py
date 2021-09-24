@@ -28,8 +28,6 @@ async def FetchMessagesFromConsole():
 async def on_ready():
     print('We have logged in as {0.user}'.format(client))
     #Multithreading in asyncio
-    loop = asyncio.get_event_loop()
-    asyncio.run_coroutine_threadsafe(FetchMessagesFromConsole(), loop)
 
     # Tests
     _VarForGuild = client.guilds[0]
@@ -37,14 +35,25 @@ async def on_ready():
         if k.name in ["hanndels-game", "revivers-game"]:
             await k.delete()
     _VarForChannel = await client.fetch_channel(864644094343905294)
-    await _VarForChannel.send("!Roll")
     try:
         #await CreateGame.Create(509718122488659979, 2, _VarForChannel, debug)
-        time.sleep(2)
+        pass
         #await CreateGame.Join("<@!509718122488659979", 371776838491701258, _VarForGuild, _VarForChannel, True)
     except:
         await _VarForChannel.send("Something went wrong while creating the game, please , try again")
-
+    Embed = discord.Embed()
+    Color = discord.Color.teal()
+    Embed.title = "test"
+    Embed.type = "rich"
+    Embed.description = "this is a test"
+    Embed.set_author(name="Hanndel", url="https://github.com/Hanndel/Monopoly")
+    Embed.colour = Color
+    Embed.add_field(name="ak", value="asd")
+    ak = Embed.to_dict()
+    print(ak)
+    #await _VarForChannel.send(embed = Embed)
+    loop = asyncio.get_event_loop()
+    asyncio.run_coroutine_threadsafe(FetchMessagesFromConsole(), loop)
 
 @client.event
 async def on_message(message):

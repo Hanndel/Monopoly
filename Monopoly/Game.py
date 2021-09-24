@@ -1,17 +1,9 @@
 from DiscordMiddleMan import client
+import random   
 #Games that are running 
 GameData = {}
 #Board
 GameBoard = {
-    "0": {
-        "Name": "Something",
-        "Owner": 0,
-        "Cost": 5000,
-        "HouseCost": 6000,
-        "Houses": 0,
-        "Hotel": False,
-        "Fee": 3000,
-    },
     "1": {
         "Name": "Something",
         "Owner": 0,
@@ -66,6 +58,61 @@ GameBoard = {
         "Hotel": False,
         "Fee": 3000,
     },
+    "7": {
+        "Name": "Something",
+        "Owner": 0,
+        "Cost": 5000,
+        "HouseCost": 6000,
+        "Houses": 0,
+        "Hotel": False,
+        "Fee": 3000,
+    },
+    "8": {
+        "Name": "Something",
+        "Owner": 0,
+        "Cost": 5000,
+        "HouseCost": 6000,
+        "Houses": 0,
+        "Hotel": False,
+        "Fee": 3000,
+    },
+    "9": {
+        "Name": "Something",
+        "Owner": 0,
+        "Cost": 5000,
+        "HouseCost": 6000,
+        "Houses": 0,
+        "Hotel": False,
+        "Fee": 3000,
+    },
+    "10": {
+        "Name": "Something",
+        "Owner": 0,
+        "Cost": 5000,
+        "HouseCost": 6000,
+        "Houses": 0,
+        "Hotel": False,
+        "Fee": 3000,
+    },
+    "11": {
+        "Name": "Something",
+        "Owner": 0,
+        "Cost": 5000,
+        "HouseCost": 6000,
+        "Houses": 0,
+        "Hotel": False,
+        "Fee": 3000,
+    },
+    "12": {
+        "Name": "Something",
+        "Owner": 0,
+        "Cost": 5000,
+        "HouseCost": 6000,
+        "Houses": 0,
+        "Hotel": False,
+        "Fee": 3000,
+    },
+    
 
 
 }
@@ -98,7 +145,8 @@ class Player():
         self.Properties = {}
 
     def Roll(self):
-        print(self.Playerid, "Has rolled")
+        rolled = random.randint(1, 6)
+        GameData[self.Channelid][self.Channelid].MovePlayer(self.Playerid, rolled)
 
     def GiveMoney(self, player, money):
         if (self.Money - money) > 0:
@@ -139,6 +187,7 @@ class Board():
         self.BoardApropiation()
         self.money = 9999999
         self.jail  = {}
+        self.playersPos = {}
 
     def DisplayCell(self, cell):
         pass
@@ -155,6 +204,15 @@ class Board():
     def KickFromJail(self, player):
         self.jail[player] = False
 
+    def Moveplayer(self, player, roll):
+        x = 25
+        if (self.playersPos[player]+roll) > x:
+            self.playersPos[player] = x-self.playersPos[player]
+            self.GiveMoney(player, 50000)
+        else:
+            self.playersPos[player] += roll
+        pass
+
     async def SendMessage(self,message):
         _VarForChannel = await client.fetch_channel(self.Channelid)
         _VarForChannel.send("Bank, {message}".format(message))
@@ -162,6 +220,23 @@ class Board():
     def BoardApropiation(self):
         for cell in self.gameboard:
             self.gameboard[cell]["Owner"] = self.channelid
+        for player in GameData[self.Channelid]:
+            self.playersPos[player] = 1
+
+    def MakeEmbed(self, reason):
+        embed = {
+            'author': {
+                'name': 'Hanndel',
+                'url': 'https://github.com/Hanndel/Monopoly'
+            }, 
+            'color': 1752220, 
+            'type': 'rich', 
+            'description': '{0}'.format(reason), 
+            'title': 'Monopoly!'
+        },
+
+
+        pass
 
 
 

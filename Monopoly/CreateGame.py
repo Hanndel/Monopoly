@@ -22,8 +22,8 @@ class CreateGame:
             raise exception("Please, enter a valid number")
         #Cool loop to check if id exists as keyword    
         if(len([x for x in games.values() if idPlayer in x.playersId]) == 0):
-            games[idPlayer] = (CreateGame(players=int(
-                players), owner=idPlayer, channel=channel, debug=debug))
+            games[idPlayer] = (CreateGame(
+                players=int(players), owner=idPlayer, channel=channel, debug=debug))
             await games[idPlayer].Announcement(channel, debug)
         else:
             await channel.send("You are in a game already")
@@ -67,11 +67,13 @@ class CreateGame:
                         read_messages=True, send_messages=True)
                 }
 
-                _VarForChannel = await guild.create_text_channel("{0.name}'s game".format(self._VarForOwner), overwrites=overwrites)
+                _VarForChannel = await guild.create_text_channel(
+                    "{0.name}'s game".format(self._VarForOwner), overwrites=overwrites)
 
                 for k in self.playersId:
                     _VarForMember = await guild.fetch_member(k)
-                    await _VarForChannel.set_permissions(_VarForMember, read_messages=True, send_messages=True, view_channel=True)
+                    await _VarForChannel.set_permissions(
+                        _VarForMember, read_messages=True, send_messages=True, view_channel=True)
 
                 #Start the actual game
                 Game(self.playersId, _VarForChannel.id)
