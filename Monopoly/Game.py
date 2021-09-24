@@ -1,4 +1,5 @@
 from DiscordMiddleMan import client
+import discord
 import random   
 #Games that are running 
 GameData = {}
@@ -223,7 +224,7 @@ class Board():
         for player in GameData[self.Channelid]:
             self.playersPos[player] = 1
 
-    def MakeEmbed(self, reason):
+    def MakeEmbed(self, reason, ):
         embed = {
             'author': {
                 'name': 'Hanndel',
@@ -233,7 +234,15 @@ class Board():
             'type': 'rich', 
             'description': '{0}'.format(reason), 
             'title': 'Monopoly!'
-        },
+        }
+        Switch = {
+            "info": 0,
+            "help": 0,
+            
+        }
+        EmbedToSend = discord.Embed()
+        EmbedToSend.from_dict(embed)
+
 
 
         pass
