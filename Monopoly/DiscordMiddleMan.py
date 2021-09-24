@@ -38,13 +38,12 @@ async def on_ready():
             await k.delete()
     _VarForChannel = await client.fetch_channel(864644094343905294)
     await _VarForChannel.send("!Roll")
-    #try:
-    #await CreateGame.Create(509718122488659979, 2, _VarForChannel, debug)
-    time.sleep(2)
-    #await CreateGame.Join("<@!509718122488659979", 371776838491701258, _VarForGuild, _VarForChannel, True)
-    #except:
-        #print(exception)
-        #await _VarForChannel.send("Something went wrong while creating the game, please , try again")
+    try:
+        #await CreateGame.Create(509718122488659979, 2, _VarForChannel, debug)
+        time.sleep(2)
+        #await CreateGame.Join("<@!509718122488659979", 371776838491701258, _VarForGuild, _VarForChannel, True)
+    except:
+        await _VarForChannel.send("Something went wrong while creating the game, please , try again")
 
 
 @client.event
